@@ -3,8 +3,9 @@ import { getServerSession } from 'next-auth/next';
 import { User } from 'next-auth';
 import { NextRequest } from 'next/server';
 import dbconnect from '../../../../../lib/dbconnect';
-import { authoptions } from '../../auth/[...nextauth]/option';
+
 import UserModel from '@/model/user.model';
+import { authOptions } from '../../auth/[...nextauth]/option';
 
 export async function DELETE(
   request: Request,
@@ -12,7 +13,7 @@ export async function DELETE(
 ) {
   const messageId = params.messageid;
   await dbconnect();
-  const session = await getServerSession(authoptions);
+  const session = await getServerSession(authOptions);
   const _user: User = session?.user;
   if (!session || !_user) {
     return Response.json(

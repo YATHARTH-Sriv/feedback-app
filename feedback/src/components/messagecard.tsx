@@ -22,6 +22,7 @@ import { Message } from '@/model/user.model';
 import { Apiresponse } from '../../helpers/Apiresponse';
 
 type MessageCardProps = {
+  key:string,
   message: Message;
   onMessageDelete: (messageId: string) => void;
 };
