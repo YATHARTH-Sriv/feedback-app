@@ -68,7 +68,7 @@ export default function SignUpForm() {
   const onSubmit = async (data: z.infer<typeof signupschema>) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post<Apiresponse>('/api/signup', data);
+      const response = await axios.post<Apiresponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/signup`, data);
 
       toast({
         title: 'Success',

@@ -66,7 +66,7 @@ export default function SendMessage() {
   const onSubmit = async (data: z.infer<typeof messageschema>) => {
     setIsLoading(true);
     try {
-      const response = await axios.post<Apiresponse>('/api/send-message', {
+      const response = await axios.post<Apiresponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/send-message`, {
         ...data,
         username,
       });

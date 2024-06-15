@@ -40,7 +40,7 @@ function UserDashboard() {
   const fetchAcceptMessages = useCallback(async () => {
     setIsSwitchLoading(true);
     try {
-      const response = await axios.get<Apiresponse>('/api/accept-messages');
+      const response = await axios.get<Apiresponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/accept-messages`);
       setValue('acceptMessages', response.data.isAcceptingMessages);
     } catch (error) {
       const axiosError = error as AxiosError<Apiresponse>;
@@ -61,7 +61,7 @@ function UserDashboard() {
       setIsLoading(true);
       setIsSwitchLoading(false);
       try {
-        const response = await axios.get<Apiresponse>('/api/get-messages');
+        const response = await axios.get<Apiresponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/get-messages`);
         setMessages(response.data.messages || []);
         if (refresh) {
           toast({
@@ -97,7 +97,7 @@ function UserDashboard() {
   // Handle switch change
   const handleSwitchChange = async () => {
     try {
-      const response = await axios.post<Apiresponse>('/api/accept-messages', {
+      const response = await axios.post<Apiresponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/accept-messages`, {
         acceptMessages: !acceptMessages,
       });
       setValue('acceptMessages', !acceptMessages);
