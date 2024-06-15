@@ -48,7 +48,12 @@ export async function POST(request:Request){
                 message: []
             })
             await newuser.save()
+            return Response.json({
+                success:true,
+                message:"user created not please verify with the code"
+            })
         }
+        console.log("code comes here")
         const emailresponse=await sendemail(email,username,verifyCode)
         if(!emailresponse.success){
             return Response.json({

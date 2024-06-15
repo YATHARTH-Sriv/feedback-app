@@ -11,7 +11,7 @@ export async function sendemail(
 ):Promise<Apiresponse>{
         try {
             await resend.emails.send({
-                from: 'Acme <onboarding@resend.dev>',
+                from: '<onboarding@resend.dev>',
                 to: email,
                 subject: 'Feedback app verification email',
                 react: VerificationEmail({ username,otp:verifycode}),
@@ -23,3 +23,5 @@ export async function sendemail(
             return {success:false,message:"verification email could not be sent"}
         }
 }
+
+
